@@ -1,5 +1,7 @@
 package com.cineflix.admin.catalog.domain;
 
+import com.cineflix.admin.catalog.domain.validation.ValidationHandler;
+
 import java.util.Objects;
 
 public abstract class Entity<Id extends Identifier> {
@@ -13,6 +15,8 @@ public abstract class Entity<Id extends Identifier> {
     public Id getId() {
         return id;
     }
+
+    public abstract void validate(ValidationHandler handler);
 
     @Override
     public boolean equals(final Object o) {
