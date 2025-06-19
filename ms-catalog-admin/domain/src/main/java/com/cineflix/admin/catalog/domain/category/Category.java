@@ -42,13 +42,19 @@ public class Category extends AggregateRoot<CategoryId> {
         return new Category(id, name, description, isActive, now, now, null);
     }
 
-    public CategoryId getId() {
-        return id;
-    }
-
     @Override
     public void validate(final ValidationHandler handler) {
         new CategoryValidator(this, handler).validate();
+    }
+
+    public Category deactivate() {
+        isActive = false;
+        updatedAt = Instant.now();
+        return this;
+    }
+
+    public CategoryId getId() {
+        return id;
     }
 
     public String getName() {
@@ -59,7 +65,7 @@ public class Category extends AggregateRoot<CategoryId> {
         return description;
     }
 
-    public boolean getIsActive() {
+    public boolean isActive() {
         return isActive;
     }
 
