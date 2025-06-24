@@ -9,7 +9,19 @@ public interface ValidationHandler {
     List<Error> getErrors();
 
     default boolean hasErrors() {
-        return getErrors() != null && getErrors().isEmpty();
+        return getErrors() != null && !getErrors().isEmpty();
+    }
+
+    default Error firstError() {
+        if (getErrors() == null) {
+            return null;
+        }
+
+        if (getErrors().isEmpty()) {
+            return null;
+        }
+
+        return getErrors().getFirst();
     }
 
     interface Validation {

@@ -16,7 +16,7 @@ import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
 
-public class CreateCategoryUsecaseTest {
+public class DefaultCreateCategoryUsecaseTest {
     @InjectMocks
     private DefaultCreateCategoryUsecase usecase;
 
@@ -42,7 +42,7 @@ public class CreateCategoryUsecaseTest {
 
         Mockito.when(gateway.create(any())).thenAnswer(returnsFirstArg());
 
-        final var output = usecase.execute(command);
+        final var output = usecase.execute(command).get();
 
         Assertions.assertNotNull(output);
         Assertions.assertNotNull(output.id());
@@ -75,13 +75,14 @@ public class CreateCategoryUsecaseTest {
 
         Mockito.when(gateway.create(any())).thenAnswer(returnsFirstArg());
 
-        final var error = Assertions.assertThrows(
-                DomainException.class,
-                () -> usecase.execute(command)
-        ).getErrors().getFirst();
+        final var notification = usecase.execute(command).getLeft();
 
-        Assertions.assertEquals("'name' should not be null", error.message());
         Mockito.verify(gateway, Mockito.times(0)).create(any());
+        Assertions.assertEquals(1, notification.getErrors().size());
+        Assertions.assertEquals(
+                "'name' should not be null",
+                notification.firstError().message()
+        );
 
     }
 
@@ -100,16 +101,14 @@ public class CreateCategoryUsecaseTest {
 
         Mockito.when(gateway.create(any())).thenThrow(new IllegalStateException(expectedError));
 
-        final var error = Assertions.assertThrows(
-                IllegalStateException.class,
-                () -> usecase.execute(command)
-        );
+        final var notification = usecase.execute(command).getLeft();
 
-        Assertions.assertEquals(expectedError, error.getMessage());
+        Assertions.assertEquals(1, notification.getErrors().size());
+        Assertions.assertEquals(expectedError, notification.firstError().message());
         Mockito.verify(gateway, Mockito.times(1)).create(argThat(category ->
                 Objects.equals(expectedName, category.getName())
-        && Objects.equals(expectedDescription, category.getDescription())
-        && Objects.equals(expectedIsActive, category.isActive())));
+                        && Objects.equals(expectedDescription, category.getDescription())
+                        && Objects.equals(expectedIsActive, category.isActive())));
 
     }
 }
