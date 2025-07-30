@@ -31,6 +31,11 @@ class DefaultUpdateCategoryUsecaseTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    @BeforeEach
+    public void cleanUp() {
+        Mockito.reset(categoryGateway);
+    }
+
     @Test
     public void givenValidCommand_whenCallExecute_shouldReturnCategoryId() {
         final var category = Category.newCategory("Theater", null, true);

@@ -28,6 +28,11 @@ public class DefaultCreateCategoryUsecaseTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    @BeforeEach
+    void cleanUp() {
+        Mockito.reset(gateway);
+    }
+
     @Test
     public void givenValidCommand_whenCallExecute_shouldReturnCategoryId() {
         final var expectedName = "Movies";
