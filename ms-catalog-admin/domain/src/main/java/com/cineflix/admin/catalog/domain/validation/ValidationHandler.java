@@ -21,7 +21,7 @@ public interface ValidationHandler {
             return null;
         }
 
-        return getErrors().getFirst();
+        return getErrors().get(0);
     }
 
     interface Validation {

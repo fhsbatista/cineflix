@@ -62,7 +62,7 @@ public class DefaultGetCategoryByIdUsecaseTest {
         Mockito.verify(gateway, Mockito.atMostOnce()).findById(category.getId());
         Assertions.assertEquals(
                 "Category with id %s was not found".formatted(category.getId().getValue()),
-                exception.getErrors().getFirst().message()
+                exception.getErrors().get(0).message()
         );
     }
 

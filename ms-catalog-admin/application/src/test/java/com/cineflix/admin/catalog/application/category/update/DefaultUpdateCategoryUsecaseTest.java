@@ -198,7 +198,7 @@ class DefaultUpdateCategoryUsecaseTest {
 
         Assertions.assertEquals(
                 "Category with id %s was not found".formatted(expectedId),
-                exception.getErrors().getFirst().message()
+                exception.getErrors().get(0).message()
         );
 
         Assertions.assertEquals(1, exception.getErrors().size());
