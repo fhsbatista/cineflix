@@ -42,6 +42,17 @@ public class Category extends AggregateRoot<CategoryId> {
         return new Category(id, name, description, isActive, now, now, null);
     }
 
+    public static Category with(
+            CategoryId id,
+            String name,
+            String description,
+            boolean isActive,
+            Instant createdAt,
+            Instant updatedAt,
+            Instant deletedAt) {
+        return new Category(id, name, description, isActive, createdAt, updatedAt, deletedAt);
+    }
+
     @Override
     public void validate(final ValidationHandler handler) {
         new CategoryValidator(this, handler).validate();
