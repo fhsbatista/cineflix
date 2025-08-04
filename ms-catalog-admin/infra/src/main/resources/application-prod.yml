@@ -1,0 +1,11 @@
+mysql:
+  username: ${DATABASE_MYSQL_USERNAME:root}
+  password: ${DATABASE_MYSQL_PASSWORD:root}
+  url: ${DATABASE_MYSQL_URL:localhost:3306}
+  schema: catalog
+
+server:
+  undertow:
+    threads:
+      worker: 10
+      io: 2
