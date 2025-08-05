@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.Instant;
 
-@Entity
+@Entity(name = "Category")
 @Table(name = "category")
 public class CategoryJpaEntity {
     @Id
@@ -18,7 +18,7 @@ public class CategoryJpaEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "name", length = 4000, nullable = true)
+    @Column(name = "description", length = 4000, nullable = true)
     private String description;
 
     @Column(name = "active", nullable = false)
