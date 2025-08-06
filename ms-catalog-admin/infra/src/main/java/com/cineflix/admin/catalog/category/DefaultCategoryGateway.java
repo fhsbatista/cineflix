@@ -1,17 +1,20 @@
 package com.cineflix.admin.catalog.category;
 
+import com.cineflix.admin.catalog.category.persistence.CategoryJpaEntity;
 import com.cineflix.admin.catalog.category.persistence.CategoryRepository;
 import com.cineflix.admin.catalog.domain.category.Category;
 import com.cineflix.admin.catalog.domain.category.CategoryGateway;
 import com.cineflix.admin.catalog.domain.category.CategoryId;
 import com.cineflix.admin.catalog.domain.category.CategorySearchQuery;
 import com.cineflix.admin.catalog.domain.pagination.Pagination;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class DefaultCategoryGateway implements CategoryGateway {
+    @Autowired
     private CategoryRepository repository;
 
     public DefaultCategoryGateway(CategoryRepository repository) {
@@ -19,8 +22,8 @@ public class DefaultCategoryGateway implements CategoryGateway {
     }
 
     @Override
-    public Category create(Category category) {
-        return null;
+    public Category create(final Category category) {
+        return repository.save(CategoryJpaEntity.from(category)).toAggregate();
     }
 
     @Override
