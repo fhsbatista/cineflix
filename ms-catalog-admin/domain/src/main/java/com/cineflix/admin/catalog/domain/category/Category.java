@@ -6,7 +6,7 @@ import com.cineflix.admin.catalog.domain.validation.ValidationHandler;
 
 import java.time.Instant;
 
-public class Category extends AggregateRoot<CategoryId> {
+public class Category extends AggregateRoot<CategoryId> implements Cloneable {
     private String name;
     private String description;
     private boolean isActive;
@@ -84,6 +84,15 @@ public class Category extends AggregateRoot<CategoryId> {
         this.description = description;
         updatedAt = Instant.now();
         return this;
+    }
+
+    @Override
+    public Category clone() {
+        try {
+            return (Category) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 
     public CategoryId getId() {

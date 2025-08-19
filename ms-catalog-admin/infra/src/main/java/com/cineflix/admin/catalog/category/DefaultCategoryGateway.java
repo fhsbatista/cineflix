@@ -23,12 +23,12 @@ public class DefaultCategoryGateway implements CategoryGateway {
 
     @Override
     public Category create(final Category category) {
-        return repository.save(CategoryJpaEntity.from(category)).toAggregate();
+        return save(category);
     }
 
     @Override
-    public Category update(Category category) {
-        return null;
+    public Category update(final Category category) {
+        return save(category);
     }
 
     @Override
@@ -44,5 +44,9 @@ public class DefaultCategoryGateway implements CategoryGateway {
     @Override
     public Pagination<Category> findAll(CategorySearchQuery query) {
         return null;
+    }
+
+    private Category save(Category category) {
+        return this.repository.save(CategoryJpaEntity.from(category)).toAggregate();
     }
 }
