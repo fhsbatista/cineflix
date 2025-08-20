@@ -3,10 +3,10 @@ package com.cineflix.admin.catalog.category;
 import com.cineflix.admin.catalog.category.persistence.CategoryJpaEntity;
 import com.cineflix.admin.catalog.category.persistence.CategoryRepository;
 import com.cineflix.admin.catalog.domain.category.Category;
+import com.cineflix.admin.catalog.domain.category.CategoryId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.wildfly.common.Assert;
 
 @GatewayTest
 public class DefaultCategoryGatewayTest {
@@ -83,5 +83,29 @@ public class DefaultCategoryGatewayTest {
         Assertions.assertEquals(category.getCreatedAt(), persistedCategory.getCreatedAt());
         Assertions.assertTrue(category.getUpdatedAt().isBefore(result.getUpdatedAt()));
         Assertions.assertNull(result.getDeletedAt());
+    }
+
+    @Test
+    public void givenAValidCategoryId_whenCallsDelete_shouldDeleteCategory() {
+        final var category = Category.newCategory("Movies", "Most watched", true);
+
+        Assertions.assertEquals(0, repository.count());
+
+        repository.saveAndFlush(CategoryJpaEntity.from(category));
+
+        Assertions.assertEquals(1, repository.count());
+
+        gateway.deleteById(category.getId());
+
+        Assertions.assertEquals(0, repository.count());
+    }
+
+    @Test
+    public void givenAnInvalidCategoryId_whenCallsDelete_shouldNotDeleteCategory() {
+        Assertions.assertEquals(0, repository.count());
+
+        gateway.deleteById(CategoryId.from("invalid"));
+
+        Assertions.assertEquals(0, repository.count());
     }
 }

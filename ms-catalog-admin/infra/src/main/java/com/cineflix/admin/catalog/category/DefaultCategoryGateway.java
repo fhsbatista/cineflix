@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 public class DefaultCategoryGateway implements CategoryGateway {
     @Autowired
-    private CategoryRepository repository;
+    private final CategoryRepository repository;
 
     public DefaultCategoryGateway(CategoryRepository repository) {
         this.repository = repository;
@@ -37,8 +37,11 @@ public class DefaultCategoryGateway implements CategoryGateway {
     }
 
     @Override
-    public void deleteById(CategoryId id) {
-
+    public void deleteById(CategoryId categoryId) {
+        final var id = categoryId.getValue();
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+        }
     }
 
     @Override
