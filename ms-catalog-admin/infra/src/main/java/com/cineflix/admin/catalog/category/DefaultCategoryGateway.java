@@ -33,7 +33,7 @@ public class DefaultCategoryGateway implements CategoryGateway {
 
     @Override
     public Optional<Category> findById(CategoryId id) {
-        return Optional.empty();
+        return repository.findById(id.getValue()).map(CategoryJpaEntity::toAggregate);
     }
 
     @Override

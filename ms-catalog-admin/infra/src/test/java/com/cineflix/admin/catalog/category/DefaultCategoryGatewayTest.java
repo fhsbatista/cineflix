@@ -108,4 +108,39 @@ public class DefaultCategoryGatewayTest {
 
         Assertions.assertEquals(0, repository.count());
     }
+
+    @Test
+    public void givenAValidCategory_whenCallsFindById_shouldReturnCategory() {
+        final var expectedName = "Movies";
+        final var expectedDescription = "Most watched category";
+        final var expectedIsActive = true;
+
+        final var category = Category.newCategory(expectedName, expectedDescription, expectedIsActive);
+
+        Assertions.assertEquals(0, repository.count());
+
+        repository.saveAndFlush(CategoryJpaEntity.from(category));
+
+        Assertions.assertEquals(1, repository.count());
+
+        final var result = gateway.findById(category.getId()).get();
+
+        Assertions.assertEquals(1, repository.count());
+        Assertions.assertEquals(category.getId(), result.getId());
+        Assertions.assertEquals(expectedName, result.getName());
+        Assertions.assertEquals(expectedDescription, result.getDescription());
+        Assertions.assertEquals(expectedIsActive, result.isActive());
+        Assertions.assertEquals(category.getCreatedAt(), result.getCreatedAt());
+        Assertions.assertEquals(category.getUpdatedAt(), result.getUpdatedAt());
+        Assertions.assertNull(result.getDeletedAt());
+    }
+
+    @Test
+    public void givenACategoryIdThatIsNotPersisted_whenCallsFindById_shouldReturnEmpty() {
+        Assertions.assertEquals(0, repository.count());
+
+        final var result = gateway.findById(CategoryId.from("empty"));
+
+        Assertions.assertTrue(result.isEmpty());
+    }
 }
