@@ -1,5 +1,6 @@
 package com.cineflix.admin.catalog.infra.category;
 
+import com.cineflix.admin.catalog.GatewayTest;
 import com.cineflix.admin.catalog.infra.category.persistence.CategoryJpaEntity;
 import com.cineflix.admin.catalog.infra.category.persistence.CategoryRepository;
 import com.cineflix.admin.catalog.domain.category.Category;

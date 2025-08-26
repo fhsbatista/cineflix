@@ -1,4 +1,4 @@
-package com.cineflix.admin.catalog.infra.category;
+package com.cineflix.admin.catalog;
 
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,20 +21,6 @@ import java.util.Collection;
 @ComponentScan(includeFilters = {
         @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*Gateway$")
 })
-@ExtendWith(GatewayTest.CleanUpExtensions.class)
+@ExtendWith(CleanUpExtension.class)
 public @interface GatewayTest {
-    class CleanUpExtensions implements BeforeEachCallback {
-
-        @Override
-        public void beforeEach(ExtensionContext extensionContext) throws Exception {
-            final var repositories = SpringExtension.getApplicationContext(extensionContext)
-                    .getBeansOfType(CrudRepository.class)
-                    .values();
-            cleanUp(repositories);
-        }
-
-        private void cleanUp(final Collection<CrudRepository> repositories) {
-            repositories.forEach(CrudRepository::deleteAll);
-        }
-    }
 }
