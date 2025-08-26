@@ -1,4 +1,4 @@
-package com.cineflix.admin.catalog.category.persistence;
+package com.cineflix.admin.catalog.infra.category.persistence;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,4 +1,4 @@
-package com.cineflix.admin.catalog.utils;
+package com.cineflix.admin.catalog.infra.utils;
 
 import org.springframework.data.jpa.domain.Specification;
 

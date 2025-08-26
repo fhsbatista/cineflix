@@ -1,7 +1,7 @@
-package com.cineflix.admin.catalog.category;
+package com.cineflix.admin.catalog.infra.category;
 
-import com.cineflix.admin.catalog.category.persistence.CategoryJpaEntity;
-import com.cineflix.admin.catalog.category.persistence.CategoryRepository;
+import com.cineflix.admin.catalog.infra.category.persistence.CategoryJpaEntity;
+import com.cineflix.admin.catalog.infra.category.persistence.CategoryRepository;
 import com.cineflix.admin.catalog.domain.category.Category;
 import com.cineflix.admin.catalog.domain.category.CategoryGateway;
 import com.cineflix.admin.catalog.domain.category.CategoryId;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import static com.cineflix.admin.catalog.utils.SpecificationUtils.like;
+import static com.cineflix.admin.catalog.infra.utils.SpecificationUtils.like;
 
 @Service
 public class DefaultCategoryGateway implements CategoryGateway {

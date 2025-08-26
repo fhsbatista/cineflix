@@ -1,4 +1,4 @@
-package com.cineflix.admin.catalog.category;
+package com.cineflix.admin.catalog.infra.category;
 
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtendWith;

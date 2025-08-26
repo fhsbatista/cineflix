@@ -1,4 +1,4 @@
-package com.cineflix.admin.catalog.category.persistence;
+package com.cineflix.admin.catalog.infra.category.persistence;
 
 import com.cineflix.admin.catalog.domain.category.Category;
 import com.cineflix.admin.catalog.domain.category.CategoryId;

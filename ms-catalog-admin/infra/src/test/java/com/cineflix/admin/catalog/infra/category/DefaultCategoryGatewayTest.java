@@ -1,7 +1,7 @@
-package com.cineflix.admin.catalog.category;
+package com.cineflix.admin.catalog.infra.category;
 
-import com.cineflix.admin.catalog.category.persistence.CategoryJpaEntity;
-import com.cineflix.admin.catalog.category.persistence.CategoryRepository;
+import com.cineflix.admin.catalog.infra.category.persistence.CategoryJpaEntity;
+import com.cineflix.admin.catalog.infra.category.persistence.CategoryRepository;
 import com.cineflix.admin.catalog.domain.category.Category;
 import com.cineflix.admin.catalog.domain.category.CategoryId;
 import com.cineflix.admin.catalog.domain.category.CategorySearchQuery;

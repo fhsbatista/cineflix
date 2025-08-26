@@ -1,4 +1,4 @@
-package com.cineflix.admin.catalog.configuration.usecases;
+package com.cineflix.admin.catalog.infra.configuration.usecases;
 
 import com.cineflix.admin.catalog.application.category.create.CreateCategoryUsecase;
 import com.cineflix.admin.catalog.application.category.create.DefaultCreateCategoryUsecase;

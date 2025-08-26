@@ -1,6 +1,6 @@
-package com.cineflix.admin.catalog;
+package com.cineflix.admin.catalog.infra;
 
-import com.cineflix.admin.catalog.configuration.WebServerConfig;
+import com.cineflix.admin.catalog.infra.configuration.WebServerConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
